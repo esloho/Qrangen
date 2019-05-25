@@ -1,6 +1,6 @@
 class Interpreter:
 
-    def __init__(self, mode='binary'):
+    def __init__(self, mode='decimal'):
         self.mode = mode
 
     def extract_random_number(self, result):
