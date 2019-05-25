@@ -1,3 +1,4 @@
+import json
 from qiskit import IBMQ, Aer, execute
 from qiskit.providers.ibmq import least_busy
 
@@ -39,8 +40,9 @@ def qiskit_execution(circuit, backend, shots):
 
 def load_credentials():
     try:
-        with open('token', 'r') as token_file:
-            token = token_file.read()
-        IBMQ.enable_account(token)
+        with open('key.json', 'r+') as token_file:
+            ibm_token_json = json.load(token_file)
+        ibm_token = ibm_token_json['api_token']
+        IBMQ.enable_account(ibm_token)
     except Exception as e:
         print('IBMQ Account could not be enabled!')
