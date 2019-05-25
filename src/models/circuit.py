@@ -1,7 +1,9 @@
 import qiskit
 
+
 def Circuit():
     return h() * measure()
+
 
 class AnyCircuit:
     def __init__(self, nqubits=None, nbits=None):
@@ -34,18 +36,23 @@ class AnyCircuit:
     def to_qiskit(self):
         return self.U
 
+
 def concatenate(circ1, circ2):
     if not len(circ1.U.qregs) == len(circ2.U.qregs):
         raise Exception('Can not concatenate circuits with different amount of qubits')
+
     result = AnyCircuit(len(circ1.U.qregs))
+
     for gate in circ1.U.data:
         gate.qargs = [result.qr[index[1]] for index in gate.qargs]
         gate.cargs = [result.cr[index[1]] for index in gate.cargs]
         gate.reapply(result.U)
+
     for gate in circ2.U.data:
         gate.qargs = [result.qr[index[1]] for index in gate.qargs]
         gate.cargs = [result.cr[index[1]] for index in gate.cargs]
         gate.reapply(result.U)
+
     return result
 
 
@@ -74,8 +81,9 @@ def z(iqubit=0, nqubits=1):
 
 
 def measure(iqubit=0, ibit=None, nqubits=1):
-    if ibit == None:
+    if ibit is None:
         ibit = iqubit
+
     result = AnyCircuit(nqubits)
     result.U.measure(result.qr[iqubit], result.cr[ibit])
     return result
