@@ -9,7 +9,7 @@ class IBMDevice:
         load_credentials()
         self.backend = least_busy(IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and not x.configuration().simulator))
 
-    def execute(self, circuit, shots=1024):
+    def execute(self, circuit, shots=1):
         return qiskit_execution(circuit, self.backend, shots)
 
 
@@ -18,7 +18,7 @@ class SimulationDevice:
     def __init__(self, nqubits):
         self.backend = least_busy(IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and x.configuration().simulator))
 
-    def execute(self, circuit, shots=1024):
+    def execute(self, circuit, shots=1):
         return qiskit_execution(circuit, self.backend, shots)
 
 
@@ -27,7 +27,7 @@ class LocalDevice:
     def __init__(self):
         self.backend = Aer.get_backend('qasm_simulator')
 
-    def execute(self, circuit, shots=1024):
+    def execute(self, circuit, shots=1):
         return qiskit_execution(circuit, self.backend, shots)
 
 

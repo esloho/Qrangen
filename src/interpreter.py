@@ -4,12 +4,8 @@ class Interpreter:
         pass
 
     def extract_random_number(self, result):
-        return [binary2decimal(i) for i in result.get_memory()]
+        complete_string = ''.join(result.get_memory())
+        return binary_to_decimal(complete_string)
 
-
-def binary2decimal(string):
-    maxp = len(string)
-    n = 0
-    for i in range(maxp):
-        n += int(string[i]) * 2 ** (maxp - i)
-    return n
+def binary_to_decimal(b):
+    return int(b,2)
