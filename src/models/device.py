@@ -38,7 +38,8 @@ def qiskit_execution(circuit, backend, shots):
 def load_credentials():
     try:
         with open('key.json', 'r+') as token_file:
-            ibm_token = json.loads(token_file)
+            ibm_token_json = json.loads(token_file)
+        ibm_token = ibm_token_json['api_token']
         IBMQ.enable_account(ibm_token)
     except Exception as e:
         print('IBMQ Account could not be enabled!')
