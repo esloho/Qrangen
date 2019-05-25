@@ -1,7 +1,6 @@
 import datetime
-
-from src.generator import Generator
 import numpy as np
+from src.generator import Generator
 
 from utils.math import mean_of_square_RN
 
@@ -14,7 +13,7 @@ class Benchmark:
         self.bits = bits
         self.upper_bound = 2**bits
         self.timestamp = datetime.datetime.now().strftime('%Y-%m-%dT%H%M%S')
-        self.data_dir = '../data/'
+        self.data_dir = './data/'
 
     def execute(self):
         results = {}
@@ -24,6 +23,7 @@ class Benchmark:
         }
 
         for key in all_data:
+            print(all_data[key])
             mean = mean_of_square_RN(all_data[key], self.upper_bound)
             results[key] = mean
 
@@ -49,6 +49,7 @@ class Benchmark:
 
     def save_data_to_disk(self, data, filename):
         filepath = self.data_dir + filename + '_' + self.timestamp + '.txt'
+        content = str(data)
 
-        with open(filepath, 'x') as f:
-            f.write(data)
+        f = open(filepath, 'x')
+        f.write(content)
