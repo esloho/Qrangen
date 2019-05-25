@@ -1,7 +1,5 @@
 import qiskit
 
-Circuit = H
-
 
 class AnyCircuit:
     def __init__(self, nqubits=None, nbits=None):
@@ -60,3 +58,6 @@ def z(iqubit=0, nqubits=1):
 
 def measure(iqubit=0, nqubits=1):
     pass
+
+
+Circuit = h
