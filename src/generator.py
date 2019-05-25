@@ -5,8 +5,8 @@ from src.models.circuit import Circuit
 
 class Generator:
 
-    def __init__(self):
-        pass
+    def __init__(self, mode=0):
+        self.mode = mode
 
     def generate_number(self):
         circuit = self.__build_circuit__()
@@ -20,7 +20,15 @@ class Generator:
 
     def __run_circuit__(self, circuit):
         executor = Executor()
-        return executor.simulate(circuit)
+
+        if self.mode == 2:
+            execution = executor.run
+        elif self.mode == 1:
+            execution = executor.simulate
+        else:
+            execution = executor.local
+
+        return execution(circuit)
 
     def __get_random_number__(self, execution):
         interpret = Interpreter()
