@@ -6,7 +6,7 @@ from qiskit.providers.ibmq import least_busy
 class IBMDevice:
 
     def __init__(self, nqubits):
-        IBMQ.load_accounts()
+        load_credentials()
         self.backend = least_busy(IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and not x.configuration().simulator))
 
     def execute(self, circuit, shots=1024):
