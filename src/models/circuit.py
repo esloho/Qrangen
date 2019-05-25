@@ -1,16 +1,17 @@
 import qiskit
 
-Circuit = H
+# def Circuit():
+    # return h() * measure()
 
 class AnyCircuit:
-    def __init__(self, nqubits = None, nbits = None):
-        if nqubits == None:
+    def __init__(self, nqubits=None, nbits=None):
+        if nqubits is None:
             self.qr = None
             self.cr = None
             self.U = qiskit.QuantumCircuit()
         else:
             self.qr = qiskit.QuantumRegister(nqubits)
-            if nbits == None:
+            if nbits is None:
                 nbits = nqubits
             self.cr = qiskit.ClassicalRegister(nbits)
             self.U = qiskit.QuantumCircuit(self.qr, self.cr)
@@ -19,7 +20,7 @@ class AnyCircuit:
         return str(self.U)
 
     def __mul__(self, circ):
-        result = AnyCircuit(self.nqubits)
+        result = AnyCircuit()
         result.U = self.U + circ.U
         return result
 
@@ -31,26 +32,37 @@ class AnyCircuit:
         result.U.add_register(circ.cr)
         result.U = circ.U + self.U
         return result
+    def to_qiskit(self):
+        return self.U
 
-def h(iqubit = 0, nqubits = 1):
+def h(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.h(result.qr[iqubit])
     return result
 
-def x(iqubit = 0, nqubits = 1):
+def x(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.x(result.qr[iqubit])
     return result
 
-def y(iqubit = 0, nqubits = 1):
+def y(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.y(result.qr[iqubit])
     return result
 
-def z(iqubit = 0, nqubits = 1):
+def z(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.z(result.qr[iqubit])
     return result
 
-def measure(iqubit = 0, nqubits = 1):
-    pass
+def measure(iqubit=0, ibit=None, nqubits=1):
+    if ibit == None:
+        ibit = iqubit
+    result = AnyCircuit(nqubits)
+    result.U.measure(result.qr[iqubit], result.cr[ibit])
+    return result
+
+Circuit = h
+
+# if __name__ == "__main__":
+    # print(Circuit())
