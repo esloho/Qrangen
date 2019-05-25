@@ -25,15 +25,36 @@ def histogram(a,nbins):
     plt.hist(a, nbins)
 
 def correlogram(a):
-    pass
+    fig = plt.figure()
+    fig.suptitle('correlogram')
+    ma = mean(a)
+    hs = range(len(a))
+    av = [autocovariance(a, h, ma) for h in hs]
+    plt.plot(hs,av)
 
 def mean(a):
-    pass
+    return 1/len(a)*sum(a)
+
+def variance(a, ma = None):
+    if ma is None:
+        ma = mean(a)
+    v = 0
+    for i in a:
+        v += (i - ma)**2
+    return 1/len(a)*v
+
+def autocovariance(a, h, ma = None):
+    if ma is None:
+        ma = mean(a)
+    v = 0
+    for i,_ in enumerate(a[:-h]):
+        v += (a[i] - ma)*(a[i+h] - ma)
+    return 1/len(a)*v
 
 if __name__ == "__main__":
-    mode = 0
-    amount = 100
-    bits = 5
+    mode = 2
+    amount = 1024
+    bits = 12
 
     a = Generator(mode,amount,bits).generate_number()
 
@@ -41,6 +62,5 @@ if __name__ == "__main__":
     lag_plot(a)
     histogram(a, 2**bits)
     correlogram(a)
-    mean(a)
 
     plt.show()

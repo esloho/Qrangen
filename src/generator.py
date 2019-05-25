@@ -29,6 +29,6 @@ class Generator:
         return executor.local(circuit)
 
     def __get_random_number__(self, result):
-        interpret = Interpreter()
+        interpret = Interpreter(self.amount)
         number = interpret.extract_random_number(result)
         return number

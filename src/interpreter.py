@@ -1,19 +1,15 @@
 class Interpreter:
 
-    def __init__(self, mode='decimal'):
+    def __init__(self, n=1, mode='decimal'):
         self.mode = mode
+        self.n = n
 
     def extract_random_number(self, result):
-
+        numbers = [tuple(result.get_counts(i).keys())[0] for i in range(self.n)]
         if self.mode == 'binary':
-            return result.get_memory()
+            return numbers
         else:
-            return [int(i, 2) for i in result.get_memory()]
-
-        #interpreted_result = list()
-        #for sub_result in result.get_memory():
-        #    interpreted_result.append(binary_to_decimal(sub_result))
-        #return interpreted_result
+            return [int(number, 2) for number in numbers]
 
 def binary_to_decimal(b):
     return int(b,2)
