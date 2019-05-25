@@ -48,7 +48,7 @@ class Benchmark:
         return np_random_list
 
     def save_data_to_disk(self, data, filename):
-        filepath = self.data_dir + '_' + filename + self.timestamp + '.txt'
+        filepath = self.data_dir + filename + '_' + self.timestamp + '.txt'
 
         with open(filepath, 'x') as f:
             f.write(data)
