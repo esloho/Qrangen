@@ -1,4 +1,3 @@
-import json
 from qiskit import IBMQ, Aer, execute
 from qiskit.providers.ibmq import least_busy
 
@@ -17,7 +16,8 @@ class SimulationDevice:
 
     def __init__(self, nqubits):
         load_credentials()
-        self.backend = IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and x.configuration().simulator)[0]
+        # self.backend = IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and x.configuration().simulator)[0]
+        self.backend = IBMQ.backends()[-1]
 
     def execute(self, circuit, shots=1):
         return qiskit_execution(circuit, self.backend, shots)
@@ -39,9 +39,8 @@ def qiskit_execution(circuit, backend, shots):
 
 def load_credentials():
     try:
-        with open('key.json', 'r+') as token_file:
-            ibm_token_json = json.load(token_file)
-        ibm_token = ibm_token_json['api_token']
-        IBMQ.enable_account(ibm_token)
+        with open('token', 'r') as token_file:
+            token = token_file.read()
+        IBMQ.enable_account(token)
     except Exception as e:
         print('IBMQ Account could not be enabled!')

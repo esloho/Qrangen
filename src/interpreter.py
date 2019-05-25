@@ -1,11 +1,10 @@
 class Interpreter:
 
-    def __init__(self):
-        pass
+    def __init__(self, mode='binary'):
+        self.mode = mode
 
     def extract_random_number(self, result):
-        complete_string = ''.join(result.get_memory())
-        return binary_to_decimal(complete_string)
-
-def binary_to_decimal(b):
-    return int(b,2)
+        if self.mode == 'binary':
+            return result.get_memory()
+        else:
+            return [int(i,2) for i in result.get_memory()]
