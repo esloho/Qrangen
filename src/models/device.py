@@ -9,7 +9,7 @@ class IBMDevice:
         self.backend = least_busy(IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and not x.configuration().simulator))
 
     def execute(self, circuit):
-        self.backend.execute(circuit)
+        return self.backend.execute(circuit)
 
 
 class LocalDevice:
@@ -19,7 +19,4 @@ class LocalDevice:
         self.shots = shots
 
     def execute(self, circuit):
-        job = execute(circuit, self.backend, self.shots)
-        result = job.result()
-
-        return result
+        return execute(circuit, self.backend, self.shots)

@@ -8,13 +8,16 @@ class Executor:
 
     def simulate(self, circuit):
         device = LocalDevice(1024)
-        result = device.execute(circuit)
-
-        return result
+        return self.__execute__(device, circuit)
 
     def run(self, method, circuit):
         device = IBMDevice()
-        result = device.execute(circuit)
+        return self.__execute__(device, circuit)
+
+    def __execute__(self, device, circuit):
+        job = device.execute(circuit)
+        result = job.result()
+        # TODO: check if job went well
 
         return result
 
