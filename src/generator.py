@@ -5,8 +5,9 @@ from src.models.circuit import Circuit
 
 class Generator:
 
-    def __init__(self, mode=0, exponent=1):
+    def __init__(self, mode=0, amount=1, exponent=1):
         self.mode = mode
+        self.amount = amount
         self.exponent = exponent
 
     def generate_number(self):
@@ -20,13 +21,13 @@ class Generator:
         return circuit
 
     def __run_circuit__(self, circuit):
-        executor = Executor()
+        executor = Executor(self.amount)
 
         if self.mode == 2:
-            return executor.run(circuit)
+            return executor.run(circuit, self.amount)
 
         if self.mode == 1:
-            return executor.simulate(circuit)
+            return executor.simulate(circuit, self.amount)
 
         return executor.local(circuit)
 
