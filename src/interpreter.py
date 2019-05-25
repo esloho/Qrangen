@@ -3,8 +3,6 @@ class Interpreter:
         pass
 
     def extract_random_number(self, result):
-        for key in result.get_counts().keys():
-            pass
         return [binary2decimal(i) for i in execution.get_memory()]
 
 def binary2decimal(string):
