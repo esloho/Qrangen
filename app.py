@@ -9,7 +9,13 @@ def main():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-m', '--mode', help='Simulation mode: 0 for local | 1 for IBM server simulation | 2 for IBM server REAL experiment', default=0, type=int)
+    parser.add_argument(
+        '-m',
+        '--mode',
+        help="""Simulation mode: 0 for local | 1 for IBM server
+                simulation | 2 for IBM server REAL experiment""",
+        default=0,
+        type=int)
     args = parser.parse_args()
     mode = args.mode
 
