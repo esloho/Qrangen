@@ -10,8 +10,8 @@ class Generator:
 
     def generate_number(self):
         circuit = self.__build_circuit__()
-        execution = self.__run_circuit__(circuit)
-        number = self.__get_random_number__(execution)
+        result = self.__run_circuit__(circuit)
+        number = self.__get_random_number__(result)
         return number
 
     def __build_circuit__(self):
@@ -22,15 +22,14 @@ class Generator:
         executor = Executor()
 
         if self.mode == 2:
-            execution = executor.run
-        elif self.mode == 1:
-            execution = executor.simulate
-        else:
-            execution = executor.local
+            return executor.run(circuit)
 
-        return execution(circuit)
+        if self.mode == 1:
+            return executor.simulate(circuit)
 
-    def __get_random_number__(self, execution):
+        return executor.local(circuit)
+
+    def __get_random_number__(self, result):
         interpret = Interpreter()
-        number = interpret.extract_random_number(execution)
+        number = interpret.extract_random_number(result)
         return number
