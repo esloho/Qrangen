@@ -27,6 +27,7 @@ class Benchmark:
             mean = mean_of_square_RN(all_data[key], self.upper_bound)
             results[key] = mean
 
+        self.save_data_to_disk(results, 'benchmark')
         return results
 
     def generate_qrangen_data(self):
@@ -47,7 +48,7 @@ class Benchmark:
         return np_random_list
 
     def save_data_to_disk(self, data, filename):
-        filepath = self.data_dir + filename + self.timestamp + '.txt'
+        filepath = self.data_dir + '_' + filename + self.timestamp + '.txt'
 
         with open(filepath, 'x') as f:
             f.write(data)

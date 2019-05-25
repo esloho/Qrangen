@@ -14,6 +14,7 @@ class Generator:
         circuit = self.__build_circuit__()
         result = self.__run_circuit__(circuit)
         number = self.__get_random_number__(result)
+
         return number
 
     def __build_circuit__(self):
