@@ -3,7 +3,7 @@ import qiskit
 
 class Circuit:
 
-    def __init__(self, n = 1):
+    def __init__(self, n=1):
         self.qr = qiskit.QuantumRegister(n)
         self.cr = qiskit.ClassicalRegister(n)
         self.U = qiskit.QuantumCircuit(self.qr, self.cr)

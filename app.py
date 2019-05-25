@@ -4,7 +4,7 @@ from src.generator import Generator
 
 def main(args):
     mode = args.mode
-    amount = args.amount
+    amount = args.number_amount
     exponent = args.bits
 
     if mode not in range(3):
@@ -20,6 +20,14 @@ def main(args):
     print(qrangen.generate_number())
 
 
+def print_help():
+    print("""-m --mode : Simulation mode: 0 for local | 1 for IBM server
+                simulation | 2 for IBM server REAL experiment\n\n"""
+          + """-n --number_amount : Amount of numbers to generate. Must be greater than 0\n\n"""
+          + """"-e --exponent : Generates a random number between 0 and 2**u-1.
+          Needs to be a power of 2""")
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -30,9 +38,9 @@ if __name__ == '__main__':
         default=0,
         type=int)
     parser.add_argument(
-        '-a',
-        '--amount',
-        help="""Amount of numbers to generate. Needs to be greater than 0""",
+        '-n',
+        '--number_amount',
+        help="Amount of numbers to generate. Needs to be greater than 0",
         default=1,
         type=int)
     parser.add_argument(
@@ -43,5 +51,4 @@ if __name__ == '__main__':
         type=int)
 
     parsed_args = parser.parse_args()
-
     main(parsed_args)
