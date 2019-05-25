@@ -2,7 +2,7 @@ import argparse
 from src.generator import Generator
 
 
-def main():
+def main(mode):
     qrangen = Generator(mode)
     print(qrangen.generate_number())
 

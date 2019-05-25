@@ -36,3 +36,6 @@ qiskit/.ipynb_checkpoints/start_here-checkpoint.ipynb
 venv
 papers
 
+# IBM API_TOKEN stored in a JSON format as API_TOKEN = {"token": <you_ibm_api_token>}
+# See example_key.json for more info.
+key.json
