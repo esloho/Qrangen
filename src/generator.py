@@ -1,5 +1,6 @@
 from src.executor import Executor
 
+
 class Generator:
 
     def __init__(self):

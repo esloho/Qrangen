@@ -1,7 +1,10 @@
 class IBMBackend:
-    pass
 
+    def  __init__(self):
+        pass
 
 
 class LocalBackend:
-    pass
+
+    def  __init__(self):
+        pass
