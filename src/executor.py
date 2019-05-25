@@ -1,4 +1,4 @@
-from src.models.device import IBMDevice, LocalDevice
+from src.models.device import IBMDevice, LocalDevice, SimulationDevice
 
 
 class Executor:
@@ -6,13 +6,14 @@ class Executor:
     def __init__(self):
         pass
 
+    def local(self, circuit):
+        return self.__execute__(LocalDevice(), circuit)
+
     def simulate(self, circuit):
-        device = LocalDevice()
-        return self.__execute__(device, circuit)
+        return self.__execute__(SimulationDevice(), circuit)
 
     def run(self, circuit):
-        device = IBMDevice()
-        return self.__execute__(device, circuit)
+        return self.__execute__(IBMDevice(), circuit)
 
     def __execute__(self, device, circuit):
         job = device.execute(circuit)
