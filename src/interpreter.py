@@ -4,4 +4,11 @@ class Interpreter:
     def extract_random_number(self, execution):
         for key in execution.get_counts.keys():
             pass
-        return tuple(execution.get_counts.keys())
+        return [binary2decimal(i) for i in execution.get_memory()]
+
+def binary2decimal(string):
+    maxp = len(string)
+    n = 0
+    for i in range(maxp):
+        n += int(string[i]) * 2 ** (maxp - i)
+    return n
