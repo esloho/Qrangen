@@ -5,7 +5,7 @@ from src.generator import Generator
 def main(args):
     mode = args.mode
     amount = args.number_amount
-    exponent = args.bits
+    bits_number = args.bits
 
     if mode not in range(3):
         raise Exception('Mode ' + str(mode)  + ' not allowed.')
@@ -13,10 +13,10 @@ def main(args):
     if amount < 0:
         raise Exception('Amount ' +  str(amount) + ' not allowed.')
 
-    if exponent < 0:
-        raise Exception('Number of bits ' + str(exponent) + ' not allowed.')
+    if bits_number < 0:
+        raise Exception('Number of bits ' + str(bits_number) + ' not allowed.')
 
-    qrangen = Generator(mode, amount, exponent)
+    qrangen = Generator(mode, amount, bits_number)
     print(qrangen.generate_number())
 
 
