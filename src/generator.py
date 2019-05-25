@@ -23,9 +23,9 @@ class Generator:
     def __run_circuit__(self, circuit):
         executor = Executor(self.amount)
         if self.mode == 2:
-            return executor.run(circuit, self.amount)
+            return executor.run(circuit, self.exponent)
         if self.mode == 1:
-            return executor.simulate(circuit, self.amount)
+            return executor.simulate(circuit, self.exponent)
         return executor.local(circuit)
 
     def __get_random_number__(self, result):

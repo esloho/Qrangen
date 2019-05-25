@@ -23,9 +23,10 @@ def main(args):
 def print_help():
     print("""-m --mode : Simulation mode: 0 for local | 1 for IBM server
                 simulation | 2 for IBM server REAL experiment\n\n"""
-          + """-n --number_amount : Amount of numbers to generate. Must be greater than 0\n\n"""
-          + """"-e --exponent : Generates a random number between 0 and 2**u-1.
-          Needs to be a power of 2""")
+          + """-n --number_amount : Amount of numbers to generate.
+          Must be greater than 0\n\n"""
+          + """"-b --bits : Generates a random number between 0 and 2**b-1,
+          i.e., a number with b binary bits""")
 
 
 if __name__ == '__main__':
