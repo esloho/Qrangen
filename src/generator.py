@@ -5,17 +5,18 @@ from src.models.circuit import Circuit
 
 class Generator:
 
-    def __init__(self, mode=0):
+    def __init__(self, mode=0, exponent):
         self.mode = mode
+        self.exponent
 
     def generate_number(self):
-        circuit = self.__build_circuit__()
+        circuit = self.__build_circuit__(exponent)
         result = self.__run_circuit__(circuit)
         number = self.__get_random_number__(result)
         return number
 
-    def __build_circuit__(self):
-        circuit = Circuit()
+    def __build_circuit__(self, exponent):
+        circuit = Circuit(exponent)
         return circuit
 
     def __run_circuit__(self, circuit):
