@@ -5,5 +5,4 @@ class Interpreter:
     def extract_random_number(self, result):
         for key in result.get_counts().keys():
             pass
-
         return tuple(result.get_counts().keys())
