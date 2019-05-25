@@ -15,7 +15,6 @@ class Generator:
         return number
 
     def __build_circuit__(self):
-        # TODO: Init circuit with params blablabla
         circuit = Circuit()
         return circuit
 

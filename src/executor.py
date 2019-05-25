@@ -7,17 +7,19 @@ class Executor:
         pass
 
     def simulate(self, circuit):
-        device = LocalDevice(1024)
+        device = LocalDevice()
         return self.__execute__(device, circuit)
 
-    def run(self, method, circuit):
+    def run(self, circuit):
         device = IBMDevice()
         return self.__execute__(device, circuit)
 
     def __execute__(self, device, circuit):
         job = device.execute(circuit)
         result = job.result()
-        # TODO: check if job went well
+
+        if not result.success:
+            raise Exception('Execution of circuit failed')
 
         return result
 

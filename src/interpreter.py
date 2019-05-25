@@ -4,4 +4,4 @@ class Interpreter:
         pass
 
     def extract_random_number(self, execution):
-        return 7
+        return 42

@@ -4,23 +4,21 @@ from qiskit.providers.ibmq import least_busy
 
 class IBMDevice:
 
-    def __init__(self, nqubits, shots=1024):
+    def __init__(self, nqubits):
         IBMQ.load_accounts()
         self.backend = least_busy(IBMQ.backends(filters=lambda x: x.configuration().n_qubits >= nqubits and not x.configuration().simulator))
-        self.shots = shots
 
-    def execute(self, circuit):
-        return qiskit_execution(circuit, self.backend, self.shots)
+    def execute(self, circuit, shots=1024):
+        return qiskit_execution(circuit, self.backend, shots)
 
 
 class LocalDevice:
 
-    def __init__(self, shots=1024):
+    def __init__(self):
         self.backend = Aer.get_backend('qasm_simulator')
-        self.shots = shots
 
-    def execute(self, circuit):
-        return qiskit_execution(circuit, self.backend, self.shots)
+    def execute(self, circuit, shots=1024):
+        return qiskit_execution(circuit, self.backend, shots)
 
 
 def qiskit_execution(circuit, backend, shots):
