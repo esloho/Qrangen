@@ -1,12 +1,12 @@
-from executor import Executor
+from src.executor import Executor
 
 class Generator:
 
     def __init__(self):
-        # TODO
+        pass
 
     def generate_number(self):
-        # TODO
+        pass
 
     def __run_circuit__(self, circuit):
         executor = Executor()

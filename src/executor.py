@@ -4,7 +4,7 @@ from src.models.backend import IBMBackend, LocalBackend
 class Executor:
 
     def __init__(self):
-        # TODO
+        pass
 
     def simulate(self, method, circuit):
         backend = IBMBackend()
