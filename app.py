@@ -19,7 +19,7 @@ def main(args):
         print(f'Exponent {exponent} not allowed.')
         return
 
-    qrangen = Generator(mode)
+    qrangen = Generator(mode, exponent)
     print(qrangen.generate_number())
 
 
