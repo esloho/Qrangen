@@ -33,7 +33,7 @@ class LocalDevice:
 
 def qiskit_execution(circuit, backend, shots):
     q_circuit = circuit.to_qiskit()
-    return execute(q_circuit, backend, shots=shots)
+    return execute(q_circuit, backend, shots=shots, memory=True)
 
 def load_credentials():
     try:
