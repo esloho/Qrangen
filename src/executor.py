@@ -1,13 +1,14 @@
-from src.models.backend import IBMBackend, LocalBackend
+from src.models.device import IBMDevice, LocalDevice
 
 
 class Executor:
 
     def __init__(self):
-        # TODO
+        pass
 
     def simulate(self, method, circuit):
-        backend = IBMBackend()
+        backend = IBMDevice()
+        backend.execute(circuit)
 
     def run(self, method, circuit):
-        backend = LocalBackend()
+        backend = LocalDevice()
