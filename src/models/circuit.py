@@ -32,28 +32,34 @@ class AnyCircuit:
         result.U.add_register(circ.cr)
         result.U = circ.U + self.U
         return result
+
     def to_qiskit(self):
         return self.U
+
 
 def h(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.h(result.qr[iqubit])
     return result
 
+
 def x(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.x(result.qr[iqubit])
     return result
+
 
 def y(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.y(result.qr[iqubit])
     return result
 
+
 def z(iqubit=0, nqubits=1):
     result = AnyCircuit(nqubits)
     result.U.z(result.qr[iqubit])
     return result
+
 
 def measure(iqubit=0, ibit=None, nqubits=1):
     if ibit == None:
@@ -62,7 +68,5 @@ def measure(iqubit=0, ibit=None, nqubits=1):
     result.U.measure(result.qr[iqubit], result.cr[ibit])
     return result
 
-Circuit = h
 
-# if __name__ == "__main__":
-    # print(Circuit())
+Circuit = h
