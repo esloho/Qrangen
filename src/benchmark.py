@@ -1,6 +1,7 @@
 import datetime
 import numpy as np
 from src.generator import Generator
+from utils.graphics import visualize
 
 from utils.math import mean_of_square_RN
 
@@ -23,11 +24,13 @@ class Benchmark:
         }
 
         for key in all_data:
-            print(all_data[key])
             mean = mean_of_square_RN(all_data[key], self.upper_bound)
             results[key] = mean
 
         self.save_data_to_disk(results, 'benchmark')
+        vis = all_data['Qrangen']
+        visualize(vis, self.upper_bound)
+
         return results
 
     def generate_qrangen_data(self):
@@ -53,3 +56,4 @@ class Benchmark:
 
         f = open(filepath, 'x')
         f.write(content)
+
