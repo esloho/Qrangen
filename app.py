@@ -8,7 +8,7 @@ def main(args):
     bits_number = args.bits
 
     if mode not in range(3):
-        raise Exception('Mode ' + str(mode)  + ' not allowed.')
+        raise Exception('Mode ' + str(mode) + ' not allowed.')
 
     if amount < 0:
         raise Exception('Amount ' +  str(amount) + ' not allowed.')
@@ -18,7 +18,6 @@ def main(args):
 
     qrangen = Generator(mode, amount, bits_number)
     print(qrangen.generate_number())
-
 
 def print_help():
     print("""-m --mode : Simulation mode: 0 for local | 1 for IBM server

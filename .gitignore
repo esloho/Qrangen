@@ -1,6 +1,7 @@
 
 __pycache__/
 .cache/
+*.pyc
 
 *.ipynb*
 
@@ -29,12 +30,12 @@ qiskit/basics/Qconfig_IBMQ_experience_public.py
 qiskit/basics/Qconfig_IBMQ_experience_staging.py
 
 qiskit/basics/Qconfig_IBMQ_network-dev.py
-.DS_Store
 
 qiskit/.ipynb_checkpoints/start_here-checkpoint.ipynb
 
 venv
 papers
+.DS_Store
 
 # IBM API_TOKEN stored in a JSON format as API_TOKEN = {"token": <you_ibm_api_token>}
 # See example_key.json for more info.
