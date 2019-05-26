@@ -22,7 +22,6 @@ def main(args):
     results = (benchmark.execute())
 
     print(results)
-    visualize(results, bits)
 
 
 def print_help():

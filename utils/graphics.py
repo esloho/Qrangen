@@ -11,7 +11,7 @@ def visualize(data, upper_bound):
     plt.show()
 
 
-def visualizeDemo(data, bunches):
+def visualize_demo(data, bunches):
     fig = plt.figure()
     fig.suptitle("mean value for numpy's rand and Qrangen")
     ax1 = fig.add_subplot(211)

@@ -2,9 +2,8 @@ import datetime
 import numpy as np
 
 from src.generator import Generator
-from utils.graphics import visualize, visualizeDemo
-
-from utils.math import mean_of_square_RN, nth_moment
+from utils.graphics import visualize_demo
+from utils.math import nth_moment
 
 
 class Benchmark:
@@ -33,7 +32,7 @@ class Benchmark:
 
         self.save_data_to_disk(results, 'benchmark')
 
-        visualizeDemo(results, bunches)
+        visualize_demo(results, bunches)
         return results
 
     def generate_qrangen_data(self):
