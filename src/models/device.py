@@ -21,7 +21,7 @@ class SimulationDevice:
         self.backend = IBMQ.backends()[-1]
 
     def execute(self, circuit, shots=1):
-        return qiskit_execution([circuit]*shots, self.backend, shots=1)
+        return qiskit_execution(circuit, self.backend, shots=shots)
 
 
 class LocalDevice:
@@ -30,7 +30,7 @@ class LocalDevice:
         self.backend = Aer.get_backend('qasm_simulator')
 
     def execute(self, circuit, shots=1):
-        return qiskit_execution([circuit]*shots, self.backend, shots=1)
+        return qiskit_execution(circuit, self.backend, shots=shots)
 
 
 def qiskit_execution(circuits, backend, shots):

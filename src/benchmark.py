@@ -1,8 +1,10 @@
 import datetime
 import numpy as np
+from matplotlib import pyplot as plt
+
 from src.generator import Generator
 
-from utils.math import mean_of_square_RN
+from utils.math import mean_of_square_RN, nth_moment
 
 
 class Benchmark:
@@ -16,18 +18,22 @@ class Benchmark:
         self.data_dir = './data/'
 
     def execute(self):
-        results = {}
+        results = {'Qrangen': [], 'np': []}
         all_data = {
             'Qrangen': self.generate_qrangen_data(),
             'np': self.generate_np_data()
         }
 
-        for key in all_data:
-            print(all_data[key])
-            mean = mean_of_square_RN(all_data[key], self.upper_bound)
-            results[key] = mean
+        self.bunches = [int(self.iterations*i/30) for i in range(1,30)]
 
+        for key in all_data:
+            for bunch in self.bunches:
+                mean = nth_moment(all_data[key][:bunch], 1)
+                results[key].append(mean)
+
+        self.results = results
         self.save_data_to_disk(results, 'benchmark')
+        self.visualize()
         return results
 
     def generate_qrangen_data(self):
@@ -35,7 +41,7 @@ class Benchmark:
         data = qrangen.generate_number()
         self.save_data_to_disk(data, 'Qrangen')
 
-        return qrangen.generate_number()
+        return data
 
     def generate_np_data(self):
         np_random_list = list()
@@ -51,5 +57,18 @@ class Benchmark:
         filepath = self.data_dir + filename + '_' + self.timestamp + '.txt'
         content = str(data)
 
-        f = open(filepath, 'x')
-        f.write(content)
+        with open(filepath, 'x') as f:
+            f.write(content)
+
+    def visualize(self):
+        fig = plt.figure()
+        fig.suptitle("mean value for numpy's rand and Qrangen")
+        ax1 = fig.add_subplot(211)
+        ax2 = fig.add_subplot(212)
+        ax1.plot(self.bunches, self.results['np'])
+        ax1.set_ylabel('mean of np')
+        ax1.set_xlabel('size of sample')
+        ax2.plot(self.bunches, self.results['Qrangen'])
+        ax2.set_ylabel('mean of Qrangen')
+        ax2.set_xlabel('size of sample')
+        plt.show()
