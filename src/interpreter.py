@@ -5,7 +5,7 @@ class Interpreter:
         self.n = n
 
     def extract_random_number(self, result):
-        numbers = [tuple(result.get_counts(i).keys())[0] for i in range(self.n)]
+        numbers = result.get_memory()
         if self.mode == 'binary':
             return numbers
         else:
