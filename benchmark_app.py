@@ -1,6 +1,7 @@
 import argparse
 
 from src.benchmark import Benchmark
+from utils.graphics import visualize
 
 
 def main(args):
@@ -18,7 +19,10 @@ def main(args):
         raise Exception('Number of bits ' + str(bits) + ' not allowed.')
 
     benchmark = Benchmark(mode, iterations, bits)
-    print(benchmark.execute())
+    results = (benchmark.execute())
+
+    print(results)
+    visualize(results, bits)
 
 
 def print_help():

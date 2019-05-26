@@ -3,6 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 from src.generator import Generator
+from utils.graphics import visualize
 
 from utils.math import mean_of_square_RN, nth_moment
 
