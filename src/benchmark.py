@@ -1,9 +1,8 @@
 import datetime
 import numpy as np
-from matplotlib import pyplot as plt
 
 from src.generator import Generator
-from utils.graphics import visualize
+from utils.graphics import visualize, visualizeDemo
 
 from utils.math import mean_of_square_RN, nth_moment
 
@@ -25,16 +24,16 @@ class Benchmark:
             'np': self.generate_np_data()
         }
 
-        self.bunches = [int(self.iterations*i/30) for i in range(1,30)]
+        bunches = [int(self.iterations*i/30) for i in range(1,30)]
 
         for key in all_data:
-            for bunch in self.bunches:
+            for bunch in bunches:
                 mean = nth_moment(all_data[key][:bunch], 1)
                 results[key].append(mean)
 
-        self.results = results
         self.save_data_to_disk(results, 'benchmark')
-        self.visualize()
+
+        visualizeDemo(results, bunches)
         return results
 
     def generate_qrangen_data(self):
@@ -60,16 +59,3 @@ class Benchmark:
 
         with open(filepath, 'x') as f:
             f.write(content)
-
-    def visualize(self):
-        fig = plt.figure()
-        fig.suptitle("mean value for numpy's rand and Qrangen")
-        ax1 = fig.add_subplot(211)
-        ax2 = fig.add_subplot(212)
-        ax1.plot(self.bunches, self.results['np'])
-        ax1.set_ylabel('mean of np')
-        ax1.set_xlabel('size of sample')
-        ax2.plot(self.bunches, self.results['Qrangen'])
-        ax2.set_ylabel('mean of Qrangen')
-        ax2.set_xlabel('size of sample')
-        plt.show()

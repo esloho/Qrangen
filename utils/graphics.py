@@ -11,11 +11,25 @@ def visualize(data, upper_bound):
     plt.show()
 
 
+def visualizeDemo(data, bunches):
+    fig = plt.figure()
+    fig.suptitle("mean value for numpy's rand and Qrangen")
+    ax1 = fig.add_subplot(211)
+    ax2 = fig.add_subplot(212)
+    ax1.plot(bunches, data['np'])
+    ax1.set_ylabel('mean of np')
+    ax1.set_xlabel('size of sample')
+    ax2.plot(bunches, data['Qrangen'])
+    ax2.set_ylabel('mean of Qrangen')
+    ax2.set_xlabel('size of sample')
+    plt.show()
+
+
 def run_plot(data):
     fig = plt.figure()
     fig.suptitle('run plot')
     plt.plot(
-        range(len(data)),
+        [i for i in range(len(data))],
         data,
         marker='.',
         linestyle='None')
