@@ -10,6 +10,7 @@ from utils.math import mean_of_square_RN, nth_moment
 
 class Benchmark:
 
+
     def __init__(self, mode=0, iterations=1, bits=1):
         self.mode = mode
         self.iterations = iterations
@@ -46,12 +47,10 @@ class Benchmark:
 
     def generate_np_data(self):
         np_random_list = list()
-
         for i in range(self.iterations):
             np_random_list.append(np.random.randint(low=0, high=self.upper_bound))
 
         self.save_data_to_disk(np_random_list, 'np')
-
         return np_random_list
 
     def save_data_to_disk(self, data, filename):

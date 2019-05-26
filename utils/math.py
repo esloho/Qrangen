@@ -6,8 +6,8 @@ def nth_moment(sample, n, centered=False, scaled=True, upper_bound=2):
     if centered:
         mean = nth_moment(scaled_sample, n, centered=False)
         centered_sample = [element - mean for element in scaled_sample]
-        return (1/len(scaled_sample)) * sum([abs(element) ** n  for element in centered_sample])
-    return (1/len(scaled_sample)) * sum([abs(element) ** n  for element in scaled_sample])
+        return (1 / len(scaled_sample)) * sum([abs(element) ** n  for element in centered_sample])
+    return (1 / len(scaled_sample)) * sum([abs(element) ** n  for element in scaled_sample])
 
 
 def mean(a):
