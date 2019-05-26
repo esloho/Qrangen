@@ -3,11 +3,10 @@ import numpy as np
 
 from src.generator import Generator
 from utils.graphics import visualize_demo
-from utils.math import nth_moment
+from utils.math import nth_moment, mean_of_square_RN
 
 
 class Benchmark:
-
 
     def __init__(self, mode=0, iterations=1, bits=1):
         self.mode = mode
@@ -28,7 +27,8 @@ class Benchmark:
 
         for key in all_data:
             for bunch in bunches:
-                mean = nth_moment(all_data[key][:bunch], 1)
+                # mean = nth_moment(all_data[key][:bunch], 1)
+                mean = mean_of_square_RN(all_data[key][:bunch], self.upper_bound)
                 results[key].append(mean)
 
         self.save_data_to_disk(results, 'benchmark')

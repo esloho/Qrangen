@@ -1,7 +1,6 @@
 import argparse
 
 from src.benchmark import Benchmark
-from utils.graphics import visualize
 
 
 def main(args):
