@@ -58,7 +58,7 @@ ptyprocess==0.6.0
 pyasn1==0.4.5
 pycparser==2.19
 pyeda==0.28.0
-Pygments==2.4.1
+Pygments==2.7.4
 pylatexenc==1.4
 pyOpenSSL==19.0.0
 pyrsistent==0.15.2
